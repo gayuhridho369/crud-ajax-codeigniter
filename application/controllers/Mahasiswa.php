@@ -6,15 +6,16 @@ class Mahasiswa extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('url');
         $this->load->model('mahasiswa_model');
     }
 
+    // Halaman index untuk menampilkan seluruh data
     public function index()
     {
         $this->load->view('mahasiswa_view');
     }
 
+    // Mengambil data dari database untuk datatable dengan ajax dan respon berupa json
     public function ajax_list()
     {
         $list = $this->mahasiswa_model->get_datatables();
@@ -46,6 +47,7 @@ class Mahasiswa extends CI_Controller
         echo json_encode($output);
     }
 
+    // Menyimpan data yang ditambahkan
     public function ajax_add()
     {
         $this->_validate();
@@ -60,12 +62,14 @@ class Mahasiswa extends CI_Controller
         echo json_encode(array("status" => TRUE));
     }
 
+    // Menampilkan data lama yang akan diedit
     public function ajax_edit($id)
     {
         $data = $this->mahasiswa_model->get_by_id($id);
         echo json_encode($data);
     }
 
+    // Simpan perubahan data
     public function ajax_update()
     {
         $this->_validate();
@@ -80,12 +84,14 @@ class Mahasiswa extends CI_Controller
         echo json_encode(array("status" => TRUE));
     }
 
+    // Fungsi untuk menghapus data
     public function ajax_delete($id)
     {
         $this->mahasiswa_model->delete($id);
         echo json_encode(array("status" => TRUE));
     }
 
+    // Validasi manual untuk form
     private function _validate()
     {
         $data = array();

@@ -52,6 +52,7 @@
         var table;
         var save_method;
 
+        // Datatables with server side
         $(document).ready(function() {
             table = $('#my_table').DataTable({
                 "processing": true,
@@ -78,6 +79,7 @@
                 });
             });
 
+            // Datepicker
             $('.datepicker').datepicker({
                 autoclose: true,
                 format: "yyyy-mm-dd",
@@ -86,6 +88,7 @@
                 todayBtn: true,
             });
 
+            // Hilangkan validasi ketika value bernilai benar
             $("input").change(function() {
                 $(this).removeClass('is-invalid');
                 $(this).next().empty();
@@ -96,6 +99,7 @@
             });
         });
 
+        // Ketika tombol tambah data ditekan
         function add_mahasiswa() {
             save_method = 'add';
             $('#form')[0].reset();
@@ -105,6 +109,7 @@
             $('.modal-title').text('Tambah Data Mahasiswa');
         }
 
+        // Ketika tombol edit ditekan dan form akan menampilkan data lama
         function edit_mahasiswa(id) {
             save_method = 'edit';
             $('#form')[0].reset();
@@ -131,6 +136,7 @@
             });
         }
 
+        // Ketika tombol delete ditekan
         function delete_mahasiswa(id) {
             $('.modal-title').text('Hapus Data Mahasiswa');
             $('#modal-delete').modal('show');
@@ -159,6 +165,7 @@
             });
         }
 
+        // Simpan data ketika ditambah atau diubah
         function save() {
             $('#btn-save').text('Menyimpan...');
             $('#btn-save').attr('disabled', true);
@@ -203,6 +210,7 @@
         }
     </script>
 
+    <!-- Modal form untuk tambah dan edit -->
     <div class="modal" id="modal-form" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -264,6 +272,7 @@
         </div>
     </div>
 
+    <!-- Modal hapus data -->
     <div class="modal" id="modal-delete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
